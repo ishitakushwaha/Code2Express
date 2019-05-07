@@ -1,0 +1,40 @@
+/*Question - Given a string, Write a program that prints the number of vowels in it.
+Question - Given a string, write a program to return the character that appears
+most frequently in that string
+ */
+import java.io.*;
+import java.util.*;
+public class Day3 {
+    public static void main(String args[])throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String s = br.readLine();
+        s = s.toLowerCase();
+        HashMap<Character, Integer> hm = new HashMap<>();
+        int count2 = 0;
+        for(int i = 0; i < s.length(); i++) {
+
+            char ch = s.charAt(i);
+            if(ch == ' ')
+                continue;
+            if( ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+                count2++;
+            int count = hm.containsKey(ch) ? hm.get(ch) : 0;
+            hm.put(ch, count+1);
+        }
+        
+        System.out.println(hm);
+        //Print number of vowels
+        System.out.println("Number of vowels = "+ count2);
+        char max = ' ';
+        int m = 0;
+
+        for(char c: hm.keySet()) {
+
+            if (hm.get(c) > m) {
+                max = c;
+                m = hm.get(c);
+            }
+        }
+        System.out.println("Character that appears most frequently: "+ max + ": " + m );
+    }
+}
