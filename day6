@@ -1,0 +1,71 @@
+import java.io.*;
+import java.lang.*;
+import java.util.Arrays;
+/*Part A - Sentence Capitalization
+Question - Write a program to capitalize the first letter of each word in the string.
+
+Part B - Word Reversal
+Question - Given a sentence, Write a program to reverse each word in it.
+
+Part C - Anagram Check
+Question - Write a program to check whether the two provided strings are anagrams of each other. (Do not ignore the letter case)
+
+*/
+public class Day6 {
+    public void capitalize(String s) {
+        s = s.trim();
+        String ss[] = s.split(" ");
+        String n = "";
+        for(int i = 0; i < ss.length; i++) {
+            String a = ss[i];
+
+            n = n  + Character.toTitleCase(a.charAt(0));
+            for(int j = 1; j < a.length(); j++)
+                n = n + a.charAt(j);
+            n = n + " ";
+        }
+        System.out.println(n);
+
+    }
+    public void reversal(String s){
+        String s1[] = s.split(" ");
+        String s2 = "";
+        for(int i = 0; i < s1.length; i++){
+            String a = s1[i];
+            StringBuffer sb = new StringBuffer(a);
+            s2 = s2+sb.reverse()+" ";
+        }
+        System.out.println(s2);
+    }
+    public void anagram(String s1, String s2){
+        s1 = s1.trim();
+        s2 = s2.trim();
+        if(s1.length() != s2.length()) {
+            System.out.println("Not anagram");
+        }
+        else {
+            char ch1[] = s1.toCharArray();
+            Arrays.sort(ch1);
+            char ch2[] = s2.toCharArray();
+            Arrays.sort(ch2);
+            int flag = 0;
+            for(int i = 0; i < ch1.length; i++) {
+                if( ch1[i] != ch2[i]) {
+                    flag = 1; break; }
+            }
+            if(flag == 0)
+                System.out.println("Anagram");
+            else
+                System.out.println("Not anagram");
+        }
+    }
+    public static void main(String args[])throws IOException {
+        String s = "girls high school";
+        Day6 obj = new Day6();
+        obj.capitalize(s);
+        obj.reversal(s);
+        String s1 = "creatives";
+        String s2 = "reactive";
+        obj.anagram(s1,s2);
+    }
+}
